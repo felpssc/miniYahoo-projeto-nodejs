@@ -25,7 +25,9 @@ app.use(bodyParser.json());
 // routes here
 
 app.get('/', (request, response) => {
-    response.render('index');
+    Ask.findAll({ raw: true, order: [['createdAt', 'desc']] }).then(questions => {
+        response.render('index', { questions });
+    });
 });
 
 app.get('/ask', (request, response) => {
