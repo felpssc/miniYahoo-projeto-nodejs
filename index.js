@@ -1,10 +1,10 @@
 const express = require('express');
-const {request, response} = require('express');
+const { request, response } = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { v4: uuid, validate: isUuid, v4 } = require('uuid'); 
 const connection = require('./database/database');
-const askModel = require('./database/Ask');
+const Ask = require('./database/Ask');
 
 // database connection
 connection.authenticate()
@@ -15,6 +15,7 @@ connection.authenticate()
         console.log(error);
     });
 
+// app configs
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -33,15 +34,15 @@ app.get('/ask', (request, response) => {
 
 app.post('/ask', (request, response) => {
     const { title, description } = request.body;
-    const newAsk = {
+    
+    Ask.create({
         id: uuid(),
         title,
         description
-    }
-    response.send(newAsk);
+    }).then(() => response.redirect('/'));
 });
 
 
-app.listen(3338, () => {
+app.listen(3337, () => {
     console.log('🔥 Back-end Iniciado!')
 });
