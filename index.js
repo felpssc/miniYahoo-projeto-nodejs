@@ -3,6 +3,17 @@ const {request, response} = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { v4: uuid, validate: isUuid, v4 } = require('uuid'); 
+const connection = require('./database/database');
+const askModel = require('./database/Ask');
+
+// database connection
+connection.authenticate()
+    .then(() => {
+        console.log('Connected to Database.');
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
 
 app.set('view engine', 'ejs');
@@ -25,8 +36,7 @@ app.post('/ask', (request, response) => {
     const newAsk = {
         id: uuid(),
         title,
-        description,
-        date: new Date
+        description
     }
     response.send(newAsk);
 });
