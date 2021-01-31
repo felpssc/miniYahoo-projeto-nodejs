@@ -1,4 +1,4 @@
-<%- include('partials/header-home.ejs') %> 
+<%- include('partials/header.ejs') %> 
 <body>
     <%- include('partials/navbar-home.ejs') %>
     <div class="container">
@@ -16,7 +16,7 @@
                   <p> <%- question.description %>  </p>
                 </div>
                 <div class="card-footer">
-                  <a href="#" class="btn btn-success">Responder</a>
+                  <a href="<%= `/question/${question.id}` %> " class="btn btn-success">Responder</a>
                 </div>
               </div>
               <br>

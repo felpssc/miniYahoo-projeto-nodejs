@@ -26,12 +26,27 @@ app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
     Ask.findAll({ raw: true, order: [['createdAt', 'desc']] }).then(questions => {
-        response.render('index', { questions });
+        response.render('index', { questions, title: 'Perguntas recentes' });
     });
 });
 
 app.get('/ask', (request, response) => {
-    response.render('ask');
+    response.render('ask', { title:'Fazer pergunta' });
+});
+
+app.get('/question/:id', (request, response) => {
+    const { id } = request.params;
+    const question = Ask.findOne({ 
+        where: { id }
+    }).then(question => {
+        if(question != undefined) { 
+            const title = question.title;
+            response.render('question', {title, question})
+        } else { 
+            response.redirect('/');
+        } 
+    });
+
 });
 
 app.post('/ask', (request, response) => {
