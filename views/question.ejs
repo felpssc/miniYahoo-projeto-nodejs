@@ -17,7 +17,7 @@
         <form method="POST" action="/reply">
             <div class="card-body">
                 <label style="margin-bottom: 10px;" style="font-weight: 500;">Resposta:</label>
-                <textarea name="answerBody" class="form-control" placeholder="<%=`Digite sua resposta para '${question.title}'` %> "></textarea>
+                <textarea required name="answerBody" class="form-control" placeholder="<%=`Digite sua resposta para '${question.title}'` %> "></textarea>
                 <br>
                 <input name="id" hidden type="text" value="<%=question.id%>">
                 <button type="submit" class="btn btn-primary">Responder</button>
@@ -32,7 +32,7 @@
         <% if(answers.length <= 0){ %>
             <div class="card-header">
                 <blockquote class="blockquote mb-0">
-                  <p style="text-align: center;">Ops! Sem respostas para essa pergunta...</p>
+                  <p style="text-align: center; font-size: 16px;">Ops! Sem respostas para essa pergunta...</p>
                 </blockquote>
             </div>
         <% } %> 

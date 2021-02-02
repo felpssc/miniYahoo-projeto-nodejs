@@ -13,10 +13,10 @@
             <div class="card-body">
                 <form method="POST" action="/ask">
                     <label>Título</label>
-                    <input class="form-control" name="title" type="text" placeholder="Título da sua pergunta">
+                    <input required class="form-control" name="title" type="text" placeholder="Título da sua pergunta">
                     <br>
                     <label>Descrição</label>
-                    <textarea class="form-control" name="description" placeholder="Descreva melhor sua pergunta..."></textarea>
+                    <textarea required class="form-control" name="description" placeholder="Descreva melhor sua pergunta..."></textarea>
                     <br>
                     <button class="btn btn-success">Perguntar</button>
                 </form>
