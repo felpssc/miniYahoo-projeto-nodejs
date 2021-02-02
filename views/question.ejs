@@ -10,13 +10,19 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="/ask">
-                    <p> <%= question.description %>  </p>
-                    <hr>
-                    <button class="btn btn-success">Responder</button>
-                </form>
+                <p> <%= question.description %>  </p>
             </div>
         </div>
+        <hr>
+        <form method="POST" action="/reply">
+            <div class="card-body">
+                <label style="margin-bottom: 10px;" style="font-weight: 500;">Resposta:</label>
+                <textarea name="answerBody" class="form-control" placeholder="<%=`Digite sua resposta para '${question.title}'` %> "></textarea>
+                <br>
+                <input name="id" hidden type="text" value="<%=question.id%>">
+                <button type="submit" class="btn btn-primary">Responder</button>
+            </div>
+        </form>
     </div>
 
 

@@ -19,6 +19,6 @@ const Ask = connection.define('questions', {
     }
 });
 
-Ask.sync({force: false}).then(() => {});
+Ask.sync({force: false}).then(() => console.log('🔃 synchronized questions table'));
 
 module.exports = Ask;

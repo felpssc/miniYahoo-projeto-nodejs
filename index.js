@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const { v4: uuid, validate: isUuid, v4 } = require('uuid'); 
 const connection = require('./database/database');
 const Ask = require('./database/Ask');
+const Answer = require('./database/Answer');
 
 // database connection
 connection.authenticate()
@@ -57,6 +58,17 @@ app.post('/ask', (request, response) => {
         title,
         description
     }).then(() => response.redirect('/'));
+});
+
+app.post('/reply', (request, response) => {
+    const { id, answerBody } = request.body;
+    console.log(id);
+    Answer.create({
+        questionID: id,
+        body: answerBody
+    }).then(() => {
+        response.redirect(`/question/${id}`);
+    });
 });
 
 
