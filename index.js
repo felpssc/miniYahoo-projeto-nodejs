@@ -41,8 +41,15 @@ app.get('/question/:id', (request, response) => {
         where: { id }
     }).then(question => {
         if(question != undefined) { 
-            const title = question.title;
-            response.render('question', {title, question})
+
+            Answer.findAll({order: [['createdAt', 'desc']]}, {
+                where: {questionID: question.id}
+            }).then(answers => {
+                const title = question.title;
+                response.render('question', {title, question, answers});
+            });
+
+            
         } else { 
             response.redirect('/');
         } 

@@ -23,6 +23,25 @@
                 <button type="submit" class="btn btn-primary">Responder</button>
             </div>
         </form>
+
+        <br>
+        <br>
+        <h3 class="">💬 Respostas:</h3>
+        <br>
+        <% answers.forEach(answer => { %>
+            <div style="border-radius: 5px;" class="card-header">
+                <div>
+                  <p style="font-size: 12px;"><i><%= answer.createdAt %></i></p> 
+                </div>
+                <hr>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>↪️ Resposta: <%= answer.body %></p>
+                  </blockquote>
+                </div>
+              </div>
+              <br>
+        <% }); %> 
     </div>
 
 
