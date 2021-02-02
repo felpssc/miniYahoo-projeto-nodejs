@@ -42,8 +42,9 @@ app.get('/question/:id', (request, response) => {
     }).then(question => {
         if(question != undefined) { 
 
-            Answer.findAll({order: [['createdAt', 'desc']]}, {
-                where: {questionID: question.id}
+            Answer.findAll({
+                where: {questionID: question.id},
+                order: [['createdAt', 'desc']]
             }).then(answers => {
                 const title = question.title;
                 response.render('question', {title, question, answers});

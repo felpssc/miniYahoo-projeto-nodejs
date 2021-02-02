@@ -28,6 +28,15 @@
         <br>
         <h3 class="">💬 Respostas:</h3>
         <br>
+
+        <% if(answers.length <= 0){ %>
+            <div class="card-header">
+                <blockquote class="blockquote mb-0">
+                  <p style="text-align: center;">Ops! Sem respostas para essa pergunta...</p>
+                </blockquote>
+            </div>
+        <% } %> 
+
         <% answers.forEach(answer => { %>
             <div style="border-radius: 5px;" class="card-header">
                 <div>
